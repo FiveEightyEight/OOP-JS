@@ -32,7 +32,16 @@ class App {
 		this.views = [];
 	}
 
-    intializeViews() {}
+    intializeViews() {
+        const root = document.getElementById("root");
+        let applicationHTML = '';
+
+        for (let view of this.views) {
+            applicationHTML += view.render;
+        };
+
+        root.innerHTML = applicationHTML;
+    }
     
     addView(view, html) {
         this.views.push(new View(name, html));
@@ -82,4 +91,5 @@ app.addView(
 </ul>
 `,
 );
-const root = document.getElementById("root");
+
+app.intializeViews();
