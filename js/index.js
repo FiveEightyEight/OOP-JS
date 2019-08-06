@@ -1,3 +1,2 @@
-const root = document.querySelector(".root")
+const root = document.getElementById("root")
 
-root.innerHTML = "<h1>Tood</h1>"
