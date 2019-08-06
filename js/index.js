@@ -106,9 +106,6 @@ app.addView("list", () => {
 		}</li>`;
 	}
 	list += "</ul>";
-	//     ` <ul class="list-group mx-3">
-	//     <li class="list-group-item" data-i="0">Chicken</li>
-	// </ul>`
 	return list;
 });
 
@@ -121,7 +118,6 @@ app.addEvent(".js-add", "click", e => {
 		input.value = "";
 		app.rerenderView("list");
 	}
-	console.dir(input);
 });
 
 app.addEvent("#list", "click", (e) => {
