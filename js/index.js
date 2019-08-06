@@ -99,10 +99,10 @@ app.addView(
 
 app.addView("list", () => {
 	let list = '<ul class="list-group mx-3">';
-
-	for (let i = 0; i < app.todos.list.length; i++) {
-		list += `<li class="list-group-item" data-i="${i}">${
-			app.todos.list[i]
+    const length = app.todos.list.length;
+	for (let i = 0; i < length; i++) {
+		list += `<li class="list-group-item" data-i="${length - 1 - i}">${
+			app.todos.list[length - 1 - i]
 		}</li>`;
 	}
 	list += "</ul>";
