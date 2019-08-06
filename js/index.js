@@ -16,11 +16,14 @@ class TodoData {
 }
 
 // App
-
 class App {
     constructor(){
         // Initialize Model
         this.todos = new TodoData();
+    }
+
+    intializeViews() {
+
     }
 }
 
