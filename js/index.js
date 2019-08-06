@@ -32,27 +32,40 @@ class App {
 		this.views = [];
 	}
 
-    intializeViews() {
-        const root = document.getElementById("root");
-        let applicationHTML = '';
+	intializeViews() {
+		const root = document.getElementById("root");
+		let applicationHTML = "";
 
-        for (let view of this.views) {
-            applicationHTML += view.render;
-        };
+		for (let view of this.views) {
+			applicationHTML += `<div id="${view.name}">${view.render()}</div>`;
+		}
 
-        root.innerHTML = applicationHTML;
-    }
-    
-    addView(view, html) {
-        this.views.push(new View(name, html));
-    }
+		root.innerHTML = applicationHTML;
+	}
+
+	addView(view, html) {
+		this.views.push(new View(view, html));
+	}
+
+	addEvent(element, event, handler) {
+		const domE = document.querySelector(element);
+		domE.addEventListener(event, handler);
+	}
+
+	rerenderView(name) {
+		for (let view of this.views) {
+			if (view.name === name) {
+                
+			}
+		}
+	}
 }
 
 const app = new App();
 
 app.addView(
 	"header",
-	`
+	() => `
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1 class="display-4">Todo List App</h1>
@@ -63,7 +76,7 @@ app.addView(
 
 app.addView(
 	"input",
-	`
+	() => `
 <div class="input-group mb-3">
     <input
     type="text"
@@ -83,13 +96,29 @@ app.addView(
 `,
 );
 
-app.addView(
-	"list",
-	`
-<ul class="list-group mx-3">
-	<li class="list-group-item" data-i="0">Chicken</li>
-</ul>
-`,
-);
+app.addView("list", () => {
+	let list = '<ul class=""list-group mx-3';
+
+	for (let i = 0; i < app.todos.list.length; i++) {
+		list += `<li class="list-group-item" data-i="${i}">${
+			app.todos.list[i]
+		}</li>`;
+	}
+	list += "</ul>";
+	//     ` <ul class="list-group mx-3">
+	//     <li class="list-group-item" data-i="0">Chicken</li>
+	// </ul>`
+	return list;
+});
 
 app.intializeViews();
+app.addEvent(".js-add", "click", e => {
+	e.preventDefault();
+	const input = document.querySelector(".js-text-input");
+	if (input.value.trim() !== "") {
+		app.todos.save(input.value);
+		input.value = "";
+		app.rerenderView("list");
+	}
+	console.dir(input);
+});
