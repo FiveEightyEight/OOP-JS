@@ -32,10 +32,14 @@ class App {
 		this.views = [];
 	}
 
-	intializeViews() {}
+    intializeViews() {}
+    
+    addView(view, html) {
+        this.views.push(new View(name, html));
+    }
 }
 
-const app = App();
+const app = new App();
 
 app.addView(
 	"header",
