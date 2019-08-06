@@ -55,7 +55,8 @@ class App {
 	rerenderView(name) {
 		for (let view of this.views) {
 			if (view.name === name) {
-                
+                const domE = document.querySelector("#"+view.name);
+                domE.innerHTML = view.render();
 			}
 		}
 	}
@@ -97,7 +98,7 @@ app.addView(
 );
 
 app.addView("list", () => {
-	let list = '<ul class=""list-group mx-3';
+	let list = '<ul class=""list-group mx-3>';
 
 	for (let i = 0; i < app.todos.list.length; i++) {
 		list += `<li class="list-group-item" data-i="${i}">${
@@ -121,4 +122,9 @@ app.addEvent(".js-add", "click", e => {
 		app.rerenderView("list");
 	}
 	console.dir(input);
+});
+
+app.addEvent("#list", "click", (e) => {
+    const index = e.target.attributes['data-i'].value;
+    app.todos.delete(index);
 });
