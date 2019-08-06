@@ -15,11 +15,21 @@ class TodoData {
 	}
 }
 
+// View
+class View {
+    constructor(name, render) {
+        this.name = name;
+        this.render = render;
+    }
+}
+
 // App
 class App {
     constructor(){
         // Initialize Model
         this.todos = new TodoData();
+        // My list of view
+        this.views = [];
     }
 
     intializeViews() {
