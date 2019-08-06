@@ -1,7 +1,7 @@
 // Model // state
 class TodoData {
 	constructor() {
-		this.list = JSON.parse(localStorage.getItem("todoList") || "[]");
+		this.list = JSON.parse(localStorage.getItem("todolist") || "[]");
 	}
 
 	save(value) {
